@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 
 import AuthFormInput from '../../Inputs/AuthFormInput';
+import AuthSubmitButton from '../../Buttons/AuthSubmitButton';
 
 const AuthForm = ({isLogin}) => {
 
@@ -42,9 +43,23 @@ const AuthForm = ({isLogin}) => {
             formInputs.map(inputInfo => <AuthFormInput inputInfo={inputInfo} />)
     }
 
+    const otherAuthText = () => {
+        let  firstWord = isLogin === true ? "Don't" : "Already";
+
+        let authNavText = isLogin === true ? "Sign Up" : "Login"
+    
+        return (
+            <div className="">
+                <p>{firstWord} have an account? <span>{authNavText}</span></p>
+            </div>
+        )
+    }
+
     return (
         <div>
             {renderInputs()}
+            <AuthSubmitButton isLogin={isLogin} />
+            {otherAuthText()}
         </div>
     )
 
