@@ -50,13 +50,13 @@ const AuthForm = ({isLogin}) => {
     
         return (
             <div className="">
-                <p>{firstWord} have an account? <span>{authNavText}</span></p>
+                <p>{firstWord} have an account? <span className="text-blue-500 hover:cursor-pointer hover:text-blue-600">{authNavText}</span></p>
             </div>
         )
     }
 
     return (
-        <div>
+        <div className="flex flex-col bg-white w-full m-auto rounded p-2">
             {renderInputs()}
             <AuthSubmitButton isLogin={isLogin} />
             {otherAuthText()}

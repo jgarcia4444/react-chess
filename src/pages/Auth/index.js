@@ -15,7 +15,7 @@ const Auth = () => {
     
     return (
         <Container>
-            <div className="">
+            <div className=" w-3/4 text-left m-auto">
                 <PageTitle title={authState} />
                 <AuthForm isLogin={configureIsLogin()} />
             </div>
