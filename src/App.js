@@ -12,6 +12,7 @@ Link
 } from "react-router-dom";
 
 import Home from './pages/Home/Home';
+import Auth from './pages/Auth';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/auth" element={<Auth />} />
           </Routes>
         </Router>
       </PersistGate>
