@@ -4,6 +4,7 @@ import PageTitle from '../../components/PageTitle';
 
 import Container from '../../shared/Container';
 import AuthForm from '../../components/Forms/AuthForm';
+import OAuthButton from '../../components/Buttons/OauthButton';
 
 const Auth = () => {
     const location = useLocation();
@@ -18,6 +19,8 @@ const Auth = () => {
             <div className=" w-3/4 text-left m-auto">
                 <PageTitle title={authState} />
                 <AuthForm isLogin={configureIsLogin()} />
+                <OAuthButton isLogin={authState === "Login" ? true : false} isGoogleOAuth={true}/>
+                <OAuthButton isLogin={authState === "Login" ? true : false} isGoogleOAuth={false}/>
             </div>
         </Container>
     )
