@@ -16,6 +16,7 @@ import Auth from './pages/Auth';
 import GetUsername from './pages/Auth/GetUsername';
 import GameStart from './pages/GameStart';
 import LocalGame from './pages/Game/LocalGame';
+import LeaderBoard from './pages/LeaderBoard';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="/auth/get-username" element={<GetUsername />} />
             <Route path="/game/start" element={<GameStart />} />
             <Route path="/game/local" element={<LocalGame />} />
+            <Route path="/leaderboard" element={<LeaderBoard />}/>
           </Routes>
         </Router>
       </PersistGate>

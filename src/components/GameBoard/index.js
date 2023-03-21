@@ -2,7 +2,7 @@ import React from 'react';
 
 import BoardCell from './BoardCell';
 
-const GameBoard = () => {
+const GameBoard = ({isLocal}) => {
 
     const generateBoardTiles = () => {
         let cells = [];
@@ -18,6 +18,8 @@ const GameBoard = () => {
         }
         return cells;
     }
+
+
 
     return (
         <div className="max-w-md h-auto flex flex-row flex-wrap">

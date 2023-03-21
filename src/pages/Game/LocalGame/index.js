@@ -10,7 +10,7 @@ const LocalGame = () => {
         <Container>
             <div className="flex flex-row w-full justify-evenly">
                 <PlayerGameColumn isPlayerOne={true} />
-                <GameBoard />
+                <GameBoard isLocal={true} />
                 <PlayerGameColumn isPlayerOne={false} />
             </div>
         </Container>
