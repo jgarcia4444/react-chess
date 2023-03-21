@@ -1,9 +1,12 @@
 import React, {useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import AuthFormInput from '../../Inputs/AuthFormInput';
 import AuthSubmitButton from '../../Buttons/AuthSubmitButton';
 
 const AuthForm = ({isLogin}) => {
+
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
@@ -43,6 +46,20 @@ const AuthForm = ({isLogin}) => {
             formInputs.map(inputInfo => <AuthFormInput inputInfo={inputInfo} />)
     }
 
+    const navToOtherAuth = () => {
+        let authState;
+        if (isLogin === true) {
+            authState = "Sign Up";
+        } else {
+            authState = "Login";
+        }
+        navigate('/auth', {
+            state: {
+                authState,
+            }
+        })
+    }
+
     const otherAuthText = () => {
         let  firstWord = isLogin === true ? "Don't" : "Already";
 
@@ -50,15 +67,25 @@ const AuthForm = ({isLogin}) => {
     
         return (
             <div className="">
-                <p>{firstWord} have an account? <span className="text-blue-500 hover:cursor-pointer hover:text-blue-600">{authNavText}</span></p>
+                <p>{firstWord} have an account? <span   className="text-blue-500 hover:cursor-pointer hover:text-blue-600"
+                onClick={navToOtherAuth}
+                >{authNavText}</span></p>
             </div>
         )
+    }
+
+    const handleAuthClick = () => {
+        if (isLogin === true) {
+            // check for present values
+        } else {
+            // check for present values
+        }
     }
 
     return (
         <div className="flex flex-col bg-white w-full m-auto rounded p-2">
             {renderInputs()}
-            <AuthSubmitButton isLogin={isLogin} />
+            <AuthSubmitButton authSubmitClick={handleAuthClick} isLogin={isLogin} />
             {otherAuthText()}
         </div>
     )
