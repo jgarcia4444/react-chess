@@ -13,6 +13,7 @@ Link
 
 import Home from './pages/Home/Home';
 import Auth from './pages/Auth';
+import GetUsername from './pages/Auth/GetUsername';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/auth" element={<Auth />} />
+            <Route path="/auth/get-username" element={<GetUsername />} />
           </Routes>
         </Router>
       </PersistGate>

@@ -8,7 +8,7 @@ import OAuthButton from '../../components/Buttons/OauthButton';
 
 const Auth = () => {
     const location = useLocation();
-    const authState = location.state !== undefined ? location.state.authState : "Login";
+    const authState = location.state !== null ? location.state.authState : "Login";
 
     const configureIsLogin = () => {
         return authState === "Login" ? true : false;
