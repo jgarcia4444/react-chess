@@ -17,7 +17,8 @@ const createUser = userInfo => {
             .then(data => {
                 let {success} = data;
                 if (success === true) {
-
+                    let userInfo = data.user_info;
+                    return dispatch({type: "USER_CREATION_SUCCESS", userInfo});
                 } else {
                     let {error} = data;
                     let {message} = error;

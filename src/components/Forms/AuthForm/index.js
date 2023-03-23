@@ -1,10 +1,13 @@
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import AuthFormInput from '../../Inputs/AuthFormInput';
 import AuthSubmitButton from '../../Buttons/AuthSubmitButton';
 
-const AuthForm = ({isLogin}) => {
+import createUser from '../../../redux/actions/userActions/createUser';
+
+const AuthForm = ({isLogin, createUser}) => {
 
     const navigate = useNavigate();
 
@@ -22,7 +25,7 @@ const AuthForm = ({isLogin}) => {
     let emailInput = {
         label: "Email",
         value: email,
-        changeFunc: e => setEmail(e.target.val),
+        changeFunc: e => setEmail(e.target.value),
     }
 
     let passwordInput = {
@@ -78,6 +81,12 @@ const AuthForm = ({isLogin}) => {
         if (isLogin === true) {
             // check for present values
         } else {
+            let userInfo = {
+                email,
+                username,
+                password
+            }
+            createUser(userInfo);
             // check for present values
         }
     }
@@ -92,4 +101,13 @@ const AuthForm = ({isLogin}) => {
 
 }
 
-export default AuthForm;
+const mapDispatchToProps = dispatch => {
+    return {
+        createUser: userInfo => dispatch(createUser(userInfo)),
+    }
+}
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(AuthForm);

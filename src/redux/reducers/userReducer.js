@@ -23,7 +23,7 @@ const userReducer = (state=initialState, action) => {
             return {
                 ...state,
                 userInfo: {
-                    ...action.user_info
+                    ...action.userInfo
                 },
                 loading: false,
                 generalError: "",
