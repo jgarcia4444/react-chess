@@ -11,6 +11,29 @@ const initialState = {
 
 const userReducer = (state=initialState, action) => {
     switch(action.type) {
+        case "USER_LOGIN_SUCCESS":
+            return {
+                ...state,
+                userInfo: {
+                    ...state.userInfo,
+                    ...action.userInfo
+                },
+                loading: false,
+            }
+        case "USER_LOGIN_ERROR":
+            return {
+                ...state,
+                loading: false,
+                generalError: action.message,
+                errors: action.errors
+            }
+        case "LOGGING_IN":
+            return {
+                ...state,
+                loading: true,
+                errors: [],
+                generalError: ""   
+            }
         case "USER_CREATION_ERROR":
             let signUpErrors = action.errors !== undefined ? action.errors : [];
             return {
