@@ -6,8 +6,9 @@ import AuthFormInput from '../../Inputs/AuthFormInput';
 import AuthSubmitButton from '../../Buttons/AuthSubmitButton';
 
 import createUser from '../../../redux/actions/userActions/createUser';
+import login from '../../../redux/actions/userActions/login';
 
-const AuthForm = ({isLogin, createUser}) => {
+const AuthForm = ({isLogin, createUser, login}) => {
 
     const navigate = useNavigate();
 
@@ -44,9 +45,9 @@ const AuthForm = ({isLogin, createUser}) => {
 
     const renderInputs = () => {
         return isLogin === true ?
-            formInputs.slice(1, 3).map(inputInfo => <AuthFormInput inputInfo={inputInfo} />)
+            formInputs.slice(1, 3).map((inputInfo, i) => <AuthFormInput inputInfo={inputInfo} key={`${i}-${inputInfo.label}`} />)
             :
-            formInputs.map(inputInfo => <AuthFormInput inputInfo={inputInfo} />)
+            formInputs.map((inputInfo, i) => <AuthFormInput inputInfo={inputInfo} key={`${i}-${inputInfo.label}`} />)
     }
 
     const navToOtherAuth = () => {
@@ -80,6 +81,11 @@ const AuthForm = ({isLogin, createUser}) => {
     const handleAuthClick = () => {
         if (isLogin === true) {
             // check for present values
+            let loginInfo = {
+                email,
+                password
+            }
+            login(loginInfo);
         } else {
             let userInfo = {
                 email,
@@ -104,6 +110,7 @@ const AuthForm = ({isLogin, createUser}) => {
 const mapDispatchToProps = dispatch => {
     return {
         createUser: userInfo => dispatch(createUser(userInfo)),
+        login: loginInfo => dispatch(login(loginInfo)),
     }
 }
 

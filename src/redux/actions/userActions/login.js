@@ -11,10 +11,11 @@ const login = loginInfo => {
         body: JSON.stringify({login_info: loginInfo}),
     };
     return async dispatch => {
-        dispatch({type: "LOGGIN_IN"});
+        dispatch({type: "LOGGING_IN"});
         fetch(url, options)
             .then(res => res.json())
             .then(data => {
+                console.log("Here is the data returned from the login action", data);
                 let {success} = data;
                 if (success === true) {
                     let {user_info} = data;
