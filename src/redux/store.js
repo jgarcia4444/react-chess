@@ -17,6 +17,7 @@ import thunk from 'redux-thunk';
 const persistConfig = {
     key: 'chess',
     storage,
+    whitelist: ['user'],
 }
 
 const reducers = combineReducers({

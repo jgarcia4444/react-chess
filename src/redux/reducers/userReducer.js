@@ -11,6 +11,37 @@ const initialState = {
 
 const userReducer = (state=initialState, action) => {
     switch(action.type) {
+        case "USER_LOGOUT":
+            return {
+                ...initialState
+            }
+        case "LOGGING_OUT":
+            return {
+                ...state,
+                loading: true,
+            }
+        case 'persist/REHYDRATE':
+            if (action.payload !== undefined) {
+                if (action.payload.user !== undefined) {
+                    let {user} = action.payload
+                    return {
+                        ...state,
+                        ...user,
+                        userInfo: {
+                            ...state.userInfo,
+                            ...user.userInfo,
+                        }
+                    }
+                } else {
+                    return {
+                        ...state,
+                    }    
+                }
+            } else {
+                return {
+                    ...state,
+                }
+            }
         case "USER_LOGIN_SUCCESS":
             return {
                 ...state,
