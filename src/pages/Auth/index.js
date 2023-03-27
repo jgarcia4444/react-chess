@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { GoogleLogin } from '@react-oauth/google';
 
 import PageTitle from '../../components/PageTitle';
 import Container from '../../shared/Container';
@@ -20,6 +21,14 @@ const Auth = ({user}) => {
         return authState === "Login" ? true : false;
     }
 
+    const handleGoogleLoginSuccess = (res) => {
+        console.log("Google Login Success", res);
+    }
+
+    const handleGoogleLoginError = (res) => {
+        console.log("Google Login Failed");
+    }
+
     useEffect(() => {
         if ((email !== "" && username !== "") && (errors.length === 0 && generalError === "")) {
             navigate('/game/start');
@@ -31,8 +40,18 @@ const Auth = ({user}) => {
             <div className=" w-3/4 text-left m-auto">
                 <PageTitle title={authState} />
                 <AuthForm isLogin={configureIsLogin()} />
-                <OAuthButton isLogin={authState === "Login" ? true : false} isGoogleOAuth={true}/>
-                <OAuthButton isLogin={authState === "Login" ? true : false} isGoogleOAuth={false}/>
+                <GoogleLogin
+                    onSuccess={handleGoogleLoginSuccess}
+                    onError={handleGoogleLoginError} 
+                    theme='outline'
+                    size='medium'
+                    text={authState === 'Login' ? "signin_with" : "signup_with"}
+                    shape='pill'
+                    logo_alignment='left'
+                    ux_mode='popup'
+                />
+                {/* <OAuthButton isLogin={authState === "Login" ? true : false} isGoogleOAuth={true}/>
+                <OAuthButton isLogin={authState === "Login" ? true : false} isGoogleOAuth={false}/> */}
             </div>
         </Container>
     )
