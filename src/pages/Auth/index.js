@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { GoogleLogin } from '@react-oauth/google';
@@ -9,12 +9,13 @@ import Container from '../../shared/Container';
 import AuthForm from '../../components/Forms/AuthForm';
 import OAuthButton from '../../components/Buttons/OauthButton';
 
-const Auth = ({user}) => {
+import sendOauthInfoToBackend from '../../redux/actions/userActions/sendOauthInfoToBackend';
+
+const Auth = ({user, sendOauthInfoToBackend}) => {
 
     const location = useLocation();
     const navigate = useNavigate();
     const authState = location.state !== null ? location.state.authState : "Login";
-    const [token, setToken] = useState('');
 
     const {userInfo, errors, generalError} = user;
     const {email, username} = userInfo;
@@ -25,7 +26,7 @@ const Auth = ({user}) => {
 
     const handleGoogleLoginSuccess = (res) => {
         const decodedToken = decodeToken(res.credential);
-        console.log("Decoded Token", decodedToken);
+        sendOauthInfoToBackend(decodedToken);
     }
 
     const handleGoogleLoginError = (res) => {
@@ -70,7 +71,13 @@ const mapStateToProps = state => {
     }
 }
 
+const mapDispatchToProps = dispatch => {
+    return {
+        sendOauthInfoToBackend: tokenInfo => dispatch(sendOauthInfoToBackend(tokenInfo)),
+    }
+}
+
 export default connect(
     mapStateToProps,
-    null
+    mapDispatchToProps,
 )(Auth)
