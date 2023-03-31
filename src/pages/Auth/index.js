@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { GoogleLogin } from '@react-oauth/google';
@@ -20,14 +20,17 @@ const Auth = ({user, sendOauthInfoToBackend}) => {
     const {userInfo, errors, generalError} = user;
     const {email, username} = userInfo;
 
+    const [defaultUsername, setDefaultUsername] = useState('');
+
     const configureIsLogin = () => {
         return authState === "Login" ? true : false;
     }
 
     const handleGoogleLoginSuccess = (res) => {
         const decodedToken = decodeToken(res.credential);
-        console.log(decodedToken);
         sendOauthInfoToBackend(decodedToken);
+        let name = decodedToken.name;
+        setDefaultUsername(name.toLowerCase().split(' ').join(''));
     }
 
     const handleGoogleLoginError = (res) => {
@@ -35,8 +38,13 @@ const Auth = ({user, sendOauthInfoToBackend}) => {
     }
 
     useEffect(() => {
+        console.log(`Email: ${email}, Username: ${username}`);
         if ((email !== "" && username !== "") && (errors.length === 0 && generalError === "")) {
-            navigate('/game/start');
+            if (username === defaultUsername) {
+                navigate('/auth/get-username');
+            } else {
+                navigate('/game/start');
+            }
         }
     }, [email]);
     
