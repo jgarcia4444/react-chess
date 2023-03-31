@@ -26,6 +26,7 @@ const Auth = ({user, sendOauthInfoToBackend}) => {
 
     const handleGoogleLoginSuccess = (res) => {
         const decodedToken = decodeToken(res.credential);
+        console.log(decodedToken);
         sendOauthInfoToBackend(decodedToken);
     }
 
