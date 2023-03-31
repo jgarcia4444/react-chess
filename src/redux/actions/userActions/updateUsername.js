@@ -11,7 +11,7 @@ const updateUsername = userInfo => {
         },
         body: JSON.stringify({
             id: userInfo.id,
-            updated_username: userInfo.username
+            updated_username: userInfo.updatedUsername
         })
     }
     return async dispatch => {
