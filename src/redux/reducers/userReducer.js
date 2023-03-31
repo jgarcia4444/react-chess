@@ -11,6 +11,31 @@ const initialState = {
 
 const userReducer = (state=initialState, action) => {
     switch(action.type) {
+        case "USER_UPDATE_SUCCESS":
+            return {
+                ...state,
+                userInfo: {
+                    ...state.userInfo,
+                    username: action.username
+                },
+                loading: false,
+                generalError: '',
+                errors: [],
+            }
+        case "USER_UPDATE_ERROR":
+            return {
+                ...state,
+                loading: false,
+                errors: action.errors,
+                generalError: action.message,
+            }
+        case "UPDATING_USER":
+            return {
+                ...state,
+                loading: true,
+                errors: [],
+                generalError: "",
+            }
         case "USER_LOGOUT":
             return {
                 ...initialState
