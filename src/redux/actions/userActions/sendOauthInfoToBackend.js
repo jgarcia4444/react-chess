@@ -3,19 +3,20 @@ const {baseUrl} = Urls;
 
 const sendOauthInfoToBackend = (decodedToken) => {
 
-    let url = `${baseUrl}/google_auth/callback`;
-    let body = {
+    let url = `${baseUrl}/google-auth/callback`;
+    let postBody = {
         provider: "google_oauth2",
         info: {
             email: decodedToken.email
         }
     }
+    
     let options = {
         method: "POST",
         headers: {
-            "Content-Type": 'application/json',
+            "Content-Type": 'application/json'
         },
-        body: JSON.stringify(body),
+        body: JSON.stringify(postBody),
     };
 
     return async dispatch => {
