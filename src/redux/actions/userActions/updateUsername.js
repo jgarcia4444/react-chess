@@ -5,7 +5,7 @@ const {baseUrl} = Urls;
 const updateUsername = userInfo => {
     let url = `${baseUrl}/users/update-username`;
     let options = {
-        method: "POST",
+        method: "PUT",
         headers: {
             "Content-Type": 'application/json'
         },

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import {FiLoader} from 'react-icons/fi';
 
 import Container from '../../../shared/Container';
 import AuthFormInput from '../../../components/Inputs/AuthFormInput';
