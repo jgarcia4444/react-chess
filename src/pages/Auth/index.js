@@ -7,7 +7,6 @@ import { decodeToken } from "react-jwt";
 import PageTitle from '../../components/PageTitle';
 import Container from '../../shared/Container';
 import AuthForm from '../../components/Forms/AuthForm';
-import OAuthButton from '../../components/Buttons/OauthButton';
 
 import sendOauthInfoToBackend from '../../redux/actions/userActions/sendOauthInfoToBackend';
 
@@ -67,8 +66,6 @@ const Auth = ({user, sendOauthInfoToBackend}) => {
                         scope="email"
                     />
                 </div>
-                {/* <OAuthButton isLogin={authState === "Login" ? true : false} isGoogleOAuth={true}/>
-                <OAuthButton isLogin={authState === "Login" ? true : false} isGoogleOAuth={false}/> */}
             </div>
         </Container>
     )
