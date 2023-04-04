@@ -2,6 +2,7 @@ import Urls from "../../../config/Urls";
 const {baseUrl} = Urls;
 
 const createUser = userInfo => {
+    console.log("create user action triggered!");
     let url = `${baseUrl}/users`;
     let options = {
         method: "POST",
@@ -15,6 +16,7 @@ const createUser = userInfo => {
         fetch(url, options)
             .then(res => res.json())
             .then(data => {
+                console.log("Here is the data received from create user action", data);
                 let {success} = data;
                 if (success === true) {
                     let userInfo = data.user_info;
