@@ -1,13 +1,21 @@
 import React from 'react'
+import gamePieceImgCipher from '../../../config/gamePieceImgCipher';
 
-const GamePiece = () => {
+const GamePiece = ({pieceInfo, isPlayerOne}) => {
+
+    const {type} = pieceInfo;
 
     const gamePieceImg = () => {
-
+        let pieceImgObject = gamePieceImgCipher[type];
+        if (isPlayerOne === true) {
+            return pieceImgObject.black;
+        } else {
+            return pieceImgObject.white;
+        }
     }
 
     return (
-        <img src={gamePieceImg()} />
+        <img className="chess-game-piece" src={gamePieceImg()} alt="Chess Piece" />
     )
 };
 
