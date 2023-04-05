@@ -11,8 +11,10 @@ import {
     REGISTER,
     persistStore
 } from 'redux-persist';
-import userReducer from './reducers/userReducer';
 import thunk from 'redux-thunk';
+
+import userReducer from './reducers/userReducer';
+import gameReducer from './reducers/gameReducer';
 
 const persistConfig = {
     key: 'chess',
@@ -21,7 +23,8 @@ const persistConfig = {
 }
 
 const reducers = combineReducers({
-    user: userReducer
+    user: userReducer,
+    game: gameReducer
 });
 
 

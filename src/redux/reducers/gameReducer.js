@@ -27,7 +27,7 @@ const generatePieces = () => {
 }
 
 const initialState = {
-    playerTurnIndex: 0,
+    turnsCounter: 0,
     player1Pieces: generatePieces(),
     player2Pieces: generatePieces(),
     offTheBoardPieces1: [],

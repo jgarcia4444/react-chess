@@ -1,8 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import BoardCell from './BoardCell';
 
-const GameBoard = ({isLocal}) => {
+const GameBoard = ({isLocal, game}) => {
+
+    // Need a way to propogate the cells with the inital game pieces.
 
     const generateBoardTiles = () => {
         let cells = [];
@@ -11,7 +14,7 @@ const GameBoard = ({isLocal}) => {
             let rowCellIndex = 0;
             while (rowCellIndex < 8) {
                 let isEven = (rowsCounter + rowCellIndex) % 2 === 0;
-                cells.push(<BoardCell isEven={isEven}/>)
+                cells.push(<BoardCell x={rowCellIndex} y={rowsCounter} isEven={isEven}/>)
                 rowCellIndex += 1;
             }
             rowsCounter += 1;
@@ -28,4 +31,13 @@ const GameBoard = ({isLocal}) => {
     )
 }
 
-export default GameBoard;
+const mapStateToProps = state => {
+    return {
+        game: state.game,
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    null
+)(GameBoard);
