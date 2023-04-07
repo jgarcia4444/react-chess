@@ -5,7 +5,38 @@ import BoardCell from './BoardCell';
 
 const GameBoard = ({isLocal, game}) => {
 
-    // Need a way to propogate the cells with the inital game pieces.
+    const {player1Pieces, player2Pieces} = game;
+
+    const configureBackRow = (x, playerOne) => {
+        let playerPieces;
+        if (playerOne === true) {
+            playerPieces = player1Pieces;
+        } else {
+            playerPieces = player2Pieces;
+        }
+        switch(x) {
+            case 0:
+        }
+    }
+
+    const configureFrontRow = (x, playerOne) => {
+
+    }
+
+    const configureGamePiece = (position) => {
+        let {x, y} = position
+        if (y < 2) {
+            if (y === 0) {
+                configureBackRow(x, false);
+            } else {
+                configureFrontRow(x, false);
+            }
+        } else if (y > 5) {
+
+        } else {
+            return "";
+        }
+    }
 
     const generateBoardTiles = () => {
         let cells = [];
@@ -14,7 +45,12 @@ const GameBoard = ({isLocal, game}) => {
             let rowCellIndex = 0;
             while (rowCellIndex < 8) {
                 let isEven = (rowsCounter + rowCellIndex) % 2 === 0;
-                cells.push(<BoardCell x={rowCellIndex} y={rowsCounter} isEven={isEven}/>)
+                let position = {
+                    x: rowCellIndex,
+                    y: rowsCounter
+                }
+                let gamePiece = configureGamePiece(position);
+                cells.push(<BoardCell gamePiece={gamePiece} position={position} isEven={isEven}/>)
                 rowCellIndex += 1;
             }
             rowsCounter += 1;
