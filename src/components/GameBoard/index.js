@@ -16,6 +16,7 @@ const GameBoard = ({isLocal, game}) => {
         }
         switch(x) {
             case 0:
+                
         }
     }
 

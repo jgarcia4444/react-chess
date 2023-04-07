@@ -1,7 +1,9 @@
-import React from 'react'
+import React, {useState} from 'react'
 import gamePieceImgCipher from '../../../config/gamePieceImgCipher';
 
 const GamePiece = ({pieceInfo, isPlayerOne}) => {
+
+     
 
     const {type} = pieceInfo;
 
